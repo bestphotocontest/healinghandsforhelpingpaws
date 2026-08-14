@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vote — Best Photo Contest | Healing Hands for Helping Paws</title>
+<title>Vote Now! Best Photo Contest | Healing Hands for Helping Paws</title>
 <meta name="description" content="Voting is open in the Best Photo Contest supporting Healing Hands for Helping Paws. Browse all entries and cast your vote.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -345,7 +343,7 @@
   }
 </style>
 </head>
-<body>
+<body style="">
 
 <!-- ══ HERO ══ -->
 <section class="hero">
@@ -357,7 +355,7 @@
     then pick your favourite in each category.
   </p>
   <div class="hero-actions">
-    <a class="btn-vote" data-vote href="#">🗳️ Vote now</a>
+    <a class="btn-vote" data-vote="" href="https://docs.google.com/forms/d/e/1FAIpQLSegqHWj5DyUQhR_Bh52xWQiI1Pfb3GlhvSy1foQHKBS6YteEQ/viewform" target="_blank" rel="noopener">🗳️ Vote now</a>
     <a class="btn-ghost" href="#gallery">See the entries</a>
   </div>
 </section>
@@ -397,8 +395,8 @@
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <h3>Note the entry codes</h3>
-        <p>Each photo has a code on its label — like D1 or F3. You'll use these codes on the ballot.</p>
+        <h3>Note the titles</h3>
+        <p>Each photo has a title. You'll use these titles to vote on the ballot.</p>
       </div>
       <div class="step">
         <div class="step-num">3</div>
@@ -412,9 +410,9 @@
 <!-- ══ CATEGORY NAV ══ -->
 <nav class="catnav" aria-label="Jump to category">
   <div class="catnav-inner">
-    <a href="#best-duo">🐶🐱 Best Duo</a>
-    <a href="#funniest-pet">😂 Funniest Pet</a>
-    <a href="#most-photogenic">📸 Most Photogenic</a>
+    <a href="#best-duo" class="">🐶🐱 Best Duo</a>
+    <a href="#funniest-pet" class="">😂 Funniest Pet</a>
+    <a href="#most-photogenic" class="">📸 Most Photogenic</a>
   </div>
 </nav>
 
@@ -508,7 +506,7 @@
 <section class="voteband">
   <h2>Picked your favourites?</h2>
   <p>One vote per category. Voting closes August 16 at 11:59 pm EST, and winners are announced the next day.</p>
-  <a class="btn-vote" data-vote href="#">🗳️ Vote now</a>
+  <a class="btn-vote" data-vote="" href="https://docs.google.com/forms/d/e/1FAIpQLSegqHWj5DyUQhR_Bh52xWQiI1Pfb3GlhvSy1foQHKBS6YteEQ/viewform" target="_blank" rel="noopener">🗳️ Vote now</a>
 </section>
 
 <!-- ══ ABOUT ══ -->
@@ -530,20 +528,20 @@
   <p>Photos shared with permission of their owners.</p>
 </footer>
 
-<a class="float-vote" data-vote href="#">🗳️ Vote</a>
+<a class="float-vote" data-vote="" href="https://docs.google.com/forms/d/e/1FAIpQLSegqHWj5DyUQhR_Bh52xWQiI1Pfb3GlhvSy1foQHKBS6YteEQ/viewform" target="_blank" rel="noopener">🗳️ Vote</a>
 
 <!-- ══ LIGHTBOX ══ -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
   <button class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
-  <button class="lb-btn lb-prev"  id="lbPrev"  aria-label="Previous photo">‹</button>
-  <button class="lb-btn lb-next"  id="lbNext"  aria-label="Next photo">›</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photo">‹</button>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Next photo">›</button>
   <figure class="lb-figure">
-    <img id="lbImg" src="" alt="">
+    <img id="lbImg" src="photos/duo-1.jpg" alt="Entry D1, Best Duo: Encanto and Kingston — a white dog and a black cat side by side on a blanket.">
     <figcaption class="lb-caption">
-      <span class="code" id="lbCode"></span>
-      <div class="lb-name" id="lbName"></div>
-      <div class="lb-bio"  id="lbBio"></div>
-      <div class="lb-cat"  id="lbCat"></div>
+      <span class="code" id="lbCode">D1</span>
+      <div class="lb-name" id="lbName">Encanto &amp; Kingston</div>
+      <div class="lb-bio" id="lbBio" style="display: none;"></div>
+      <div class="lb-cat" id="lbCat">Best Duo</div>
     </figcaption>
   </figure>
 </div>
@@ -641,5 +639,6 @@ const VOTE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSegqHWj5DyUQhR_B
   onScroll();
 })();
 </script>
-</body>
-</html>
+
+
+</body></html>
