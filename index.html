@@ -1,733 +1,645 @@
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Best Photo Contest – Helping Hands for Paws</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&amp;family=Nunito:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vote — Best Photo Contest | Healing Hands for Helping Paws</title>
+<meta name="description" content="Voting is open in the Best Photo Contest supporting Healing Hands for Helping Paws. Browse all entries and cast your vote.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    :root {
-      --cream:    #fdf6ee;
-      --warm:     #f9ede0;
-      --amber:    #e8854a;
-      --amber-dk: #c96730;
-      --teal:     #3d8c8c;
-      --teal-lt:  #5ab0b0;
-      --teal-dk:  #2a6060;
-      --brown:    #5c3d2e;
-      --text:     #3a2a1e;
-      --muted:    #7a6050;
-    }
+  :root {
+    --cream:    #fdf6ee;
+    --warm:     #f9ede0;
+    --mat:      #f4e7d7;
+    --amber:    #e8854a;
+    --amber-dk: #c96730;
+    --teal:     #3d8c8c;
+    --teal-lt:  #5ab0b0;
+    --teal-dk:  #2a6060;
+    --brown:    #5c3d2e;
+    --text:     #3a2a1e;
+    --muted:    #7a6050;
+    --line:     rgba(92,61,46,0.14);
+  }
 
-    html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; }
 
-    body {
-      font-family: 'Nunito', sans-serif;
-      background-color: var(--cream);
-      color: var(--text);
-      overflow-x: hidden;
-    }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    /* ── TEXTURE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='none'/%3E%3Ccircle cx='1' cy='1' r='0.6' fill='%23c9a882' opacity='0.18'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
-    }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='none'/%3E%3Ccircle cx='1' cy='1' r='0.6' fill='%23c9a882' opacity='0.18'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
 
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      background: linear-gradient(145deg, #2a6060 0%, #3d8c8c 40%, #4aa0a0 70%, #e8854a 130%);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 60px 24px 80px;
-      overflow: hidden;
-    }
+  .container { width: min(1140px, 100% - 44px); margin-inline: auto; }
 
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 70% 30%, rgba(232,133,74,0.25) 0%, transparent 60%),
-                  radial-gradient(ellipse at 20% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
-    }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; border-radius: 4px; }
 
-    /* Paw prints decoration */
-    .paw-bg {
-      position: absolute; inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    .paw-bg span {
-      position: absolute;
-      font-size: 2rem;
-      opacity: 0.08;
-      animation: drift 20s linear infinite;
-    }
-    .paw-bg span:nth-child(1)  { left:  5%; top: 10%; animation-delay:  0s; font-size: 1.5rem; }
-    .paw-bg span:nth-child(2)  { left: 15%; top: 70%; animation-delay:  4s; font-size: 2.5rem; }
-    .paw-bg span:nth-child(3)  { left: 30%; top: 20%; animation-delay:  8s; font-size: 1.2rem; }
-    .paw-bg span:nth-child(4)  { left: 55%; top: 80%; animation-delay:  2s; font-size: 2rem;   }
-    .paw-bg span:nth-child(5)  { left: 70%; top: 15%; animation-delay:  6s; font-size: 1.8rem; }
-    .paw-bg span:nth-child(6)  { left: 85%; top: 60%; animation-delay: 10s; font-size: 1.4rem; }
-    .paw-bg span:nth-child(7)  { left: 90%; top: 30%; animation-delay:  3s; font-size: 2.2rem; }
-    .paw-bg span:nth-child(8)  { left: 42%; top: 45%; animation-delay:  7s; font-size: 1.6rem; }
+  /* ── HERO ───────────────────────────────────────── */
+  .hero {
+    position: relative;
+    background: linear-gradient(145deg, #2a6060 0%, #3d8c8c 40%, #4aa0a0 70%, #e8854a 130%);
+    padding: clamp(72px, 12vw, 112px) 24px clamp(64px, 9vw, 92px);
+    text-align: center;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(232,133,74,0.25) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
+  }
+  .paw-bg { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .paw-bg span { position: absolute; opacity: 0.08; animation: drift 20s linear infinite; }
+  .paw-bg span:nth-child(1) { left:  6%; top: 16%; animation-delay: 0s; font-size: 1.5rem; }
+  .paw-bg span:nth-child(2) { left: 17%; top: 72%; animation-delay: 4s; font-size: 2.4rem; }
+  .paw-bg span:nth-child(3) { left: 33%; top: 12%; animation-delay: 8s; font-size: 1.2rem; }
+  .paw-bg span:nth-child(4) { left: 58%; top: 78%; animation-delay: 2s; font-size: 2rem; }
+  .paw-bg span:nth-child(5) { left: 72%; top: 18%; animation-delay: 6s; font-size: 1.8rem; }
+  .paw-bg span:nth-child(6) { left: 88%; top: 62%; animation-delay: 10s; font-size: 1.4rem; }
+  @keyframes drift {
+    0%,100% { transform: translateY(0) rotate(0deg); opacity: 0.08; }
+    50%     { transform: translateY(-30px) rotate(15deg); opacity: 0.12; }
+  }
 
-    @keyframes drift {
-      0%   { transform: translateY(0) rotate(0deg);   opacity: 0.08; }
-      50%  { transform: translateY(-30px) rotate(15deg); opacity: 0.12; }
-      100% { transform: translateY(0) rotate(0deg);   opacity: 0.08; }
-    }
+  .hero-badge {
+    position: relative;
+    display: inline-flex; align-items: center; gap: 9px;
+    background: rgba(255,255,255,0.15);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.32);
+    color: #fff; font-weight: 800; font-size: 0.72rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 7px 18px; border-radius: 999px; margin-bottom: 26px;
+    animation: fadeUp 0.6s ease both;
+  }
+  .live-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #8ff0b0; box-shadow: 0 0 0 0 rgba(143,240,176,0.7);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(143,240,176,0.7); }
+    70%  { box-shadow: 0 0 0 9px rgba(143,240,176,0); }
+    100% { box-shadow: 0 0 0 0 rgba(143,240,176,0); }
+  }
 
-    .hero-badge {
-      position: relative;
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.3);
-      color: #fff;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      padding: 6px 18px;
-      border-radius: 999px;
-      margin-bottom: 28px;
-      display: inline-block;
-      animation: fadeUp 0.6s ease both;
-    }
+  .hero h1 {
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.7rem, 8vw, 5.4rem);
+    font-weight: 900; color: #fff; line-height: 1.02;
+    letter-spacing: -0.02em;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hero h1 em { font-style: italic; color: #ffd4a8; }
 
-    .hero h1 {
-      position: relative;
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(3rem, 9vw, 6.5rem);
-      font-weight: 900;
-      color: #fff;
-      line-height: 1.0;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-      animation: fadeUp 0.7s 0.1s ease both;
-    }
+  .hero-sub {
+    position: relative;
+    font-size: clamp(1rem, 2.5vw, 1.22rem);
+    color: rgba(255,255,255,0.88);
+    font-weight: 600;
+    margin: 20px auto 34px;
+    max-width: 560px; line-height: 1.55;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
 
-    .hero h1 em {
-      font-style: italic;
-      color: #ffd4a8;
-    }
+  .hero-actions {
+    position: relative; display: flex; flex-wrap: wrap;
+    gap: 14px; justify-content: center;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
 
-    .hero-sub {
-      position: relative;
-      font-size: clamp(1rem, 2.5vw, 1.35rem);
-      color: rgba(255,255,255,0.88);
-      font-weight: 600;
-      margin: 18px 0 36px;
-      max-width: 520px;
-      line-height: 1.5;
-      animation: fadeUp 0.7s 0.2s ease both;
-    }
+  .btn-vote {
+    display: inline-block; background: var(--amber); color: #fff;
+    font-weight: 800; font-size: 1.05rem; letter-spacing: 0.03em;
+    padding: 16px 40px; border-radius: 999px; text-decoration: none;
+    border: none; cursor: pointer; font-family: 'Nunito', sans-serif;
+    box-shadow: 0 8px 30px rgba(232,133,74,0.45), 0 2px 8px rgba(0,0,0,0.15);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .btn-vote:hover { background: var(--amber-dk); transform: translateY(-3px); box-shadow: 0 12px 36px rgba(232,133,74,0.55); }
 
-    .hero-cta {
-      position: relative;
-      display: inline-block;
-      background: var(--amber);
-      color: #fff;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 1.05rem;
-      letter-spacing: 0.04em;
-      padding: 16px 42px;
-      border-radius: 999px;
-      text-decoration: none;
-      box-shadow: 0 8px 30px rgba(232,133,74,0.5), 0 2px 8px rgba(0,0,0,0.15);
-      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-      animation: fadeUp 0.7s 0.3s ease both;
-    }
-    .hero-cta:hover {
-      background: var(--amber-dk);
-      transform: translateY(-3px);
-      box-shadow: 0 14px 40px rgba(232,133,74,0.55), 0 4px 12px rgba(0,0,0,0.18);
-    }
+  .btn-ghost {
+    display: inline-block; border: 2px solid rgba(255,255,255,0.5); color: #fff;
+    font-weight: 800; font-size: 0.95rem; letter-spacing: 0.03em;
+    padding: 14px 32px; border-radius: 999px; text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
 
-    .hero-scroll {
-      position: absolute;
-      bottom: 28px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(255,255,255,0.5);
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-      animation: fadeUp 1s 0.8s ease both;
-    }
-    .hero-scroll::after {
-      content: '';
-      display: block;
-      width: 1px;
-      height: 36px;
-      background: rgba(255,255,255,0.35);
-      animation: scrollLine 2s ease-in-out infinite;
-    }
-    @keyframes scrollLine {
-      0%, 100% { opacity: 0.35; transform: scaleY(1); }
-      50%       { opacity: 0.7;  transform: scaleY(0.6); }
-    }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+  /* ── STATUS STRIP ───────────────────────────────── */
+  .status-strip { position: relative; background: var(--brown); padding: 20px 24px; z-index: 1; }
+  .status-inner {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 14px 40px; align-items: center;
+    width: min(1140px, 100% - 24px); margin-inline: auto;
+  }
+  .st-item { display: flex; align-items: center; gap: 11px; }
+  .st-icon { font-size: 1.35rem; opacity: 0.5; }
+  .st-label { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+  .st-date  { font-size: 0.88rem; font-weight: 700; color: rgba(255,255,255,0.68); margin-top: 2px; }
+  .st-item.is-done .st-label { text-decoration: line-through; }
+  .st-item.is-now .st-icon  { opacity: 1; }
+  .st-item.is-now .st-label { color: #ffd4a8; }
+  .st-item.is-now .st-date  { color: #fff; }
 
-    /* ── SECTION WRAPPER ── */
-    section {
-      position: relative;
-      z-index: 1;
-    }
+  /* ── SECTION FURNITURE ──────────────────────────── */
+  .section-eyebrow {
+    font-size: 0.72rem; font-weight: 800; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--amber); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif; font-weight: 900;
+    font-size: clamp(1.9rem, 4.4vw, 3rem); line-height: 1.1;
+    letter-spacing: -0.015em; color: var(--brown);
+  }
+  .section-intro { font-size: 1.02rem; color: var(--muted); max-width: 620px; line-height: 1.7; margin-top: 16px; }
 
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+  /* ── HOW TO VOTE ────────────────────────────────── */
+  .howto { position: relative; z-index: 1; padding: clamp(56px, 8vw, 84px) 0 clamp(40px, 6vw, 60px); }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 22px; margin-top: 38px; }
+  .step {
+    background: #fff; border: 1px solid var(--line); border-radius: 18px;
+    padding: 26px 24px 24px; position: relative;
+    box-shadow: 0 2px 10px rgba(92,61,46,0.05);
+  }
+  .step-num {
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 50%;
+    background: var(--teal); color: #fff;
+    font-weight: 800; font-size: 0.95rem; margin-bottom: 14px;
+  }
+  .step h3 { font-size: 1.05rem; font-weight: 800; margin-bottom: 7px; color: var(--brown); }
+  .step p  { font-size: 0.94rem; line-height: 1.65; color: var(--muted); }
 
-    /* ── TIMELINE STRIP ── */
-    .timeline-strip {
-      background: var(--teal-dk);
-      padding: 28px 24px;
-      overflow: hidden;
-    }
-    .timeline-inner {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      align-items: stretch;
-      gap: 0;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .tl-item {
-      flex: 1;
-      min-width: 200px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 10px 24px;
-      border-right: 1px solid rgba(255,255,255,0.15);
-    }
-    .tl-item:last-child { border-right: none; }
-    .tl-icon {
-      font-size: 1.8rem;
-      flex-shrink: 0;
-    }
-    .tl-label {
-      color: rgba(255,255,255,0.65);
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      margin-bottom: 3px;
-    }
-    .tl-date {
-      color: #fff;
-      font-size: 0.92rem;
-      font-weight: 700;
-      line-height: 1.3;
-    }
+  /* ── CATEGORY NAV ───────────────────────────────── */
+  .catnav {
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(253,246,238,0.93);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border-block: 1px solid var(--line);
+    padding: 11px 0;
+  }
+  .catnav-inner { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .catnav a {
+    font-size: 0.85rem; font-weight: 800; text-decoration: none;
+    color: var(--muted); padding: 8px 16px; border-radius: 999px;
+    border: 1px solid transparent; transition: background 0.18s, color 0.18s, border-color 0.18s;
+    white-space: nowrap;
+  }
+  .catnav a:hover { background: var(--warm); color: var(--brown); }
+  .catnav a.is-active { background: var(--teal); color: #fff; border-color: var(--teal-dk); }
 
-    /* ── CONTEST SECTION ── */
-    .contest-section {
-      padding: 90px 24px 80px;
-      background: var(--cream);
-    }
+  /* ── GALLERY ────────────────────────────────────── */
+  .gallery { position: relative; z-index: 1; padding-bottom: 40px; }
+  .cat-block { padding-top: clamp(56px, 8vw, 84px); scroll-margin-top: 68px; }
 
-    .section-eyebrow {
-      font-size: 0.72rem;
-      font-weight: 800;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 12px;
-    }
+  .cat-head { display: flex; align-items: flex-end; gap: 16px; flex-wrap: wrap; padding-bottom: 20px; border-bottom: 2px solid var(--line); margin-bottom: 34px; }
+  .cat-emoji { font-size: 2rem; line-height: 1; }
+  .cat-name { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.7rem, 4vw, 2.5rem); color: var(--brown); letter-spacing: -0.015em; }
+  .cat-count { margin-left: auto; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted); padding-bottom: 6px; }
 
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 900;
-      color: var(--brown);
-      line-height: 1.15;
-      margin-bottom: 20px;
-    }
+  .frames { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 30px 26px; }
 
-    .section-intro {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 580px;
-      line-height: 1.7;
-      margin-bottom: 52px;
-    }
+  .entry {
+    display: flex; flex-direction: column;
+    background: none; border: none; padding: 0; margin: 0;
+    font: inherit; color: inherit; text-align: left; cursor: zoom-in;
+    transition: transform 0.22s ease;
+  }
+  .entry:hover { transform: translateY(-5px); }
 
-    /* Category cards */
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-      margin-bottom: 56px;
-    }
+  .frame {
+    position: relative; aspect-ratio: 1 / 1; width: 100%;
+    background: var(--mat);
+    border: 1px solid rgba(92,61,46,0.16);
+    border-radius: 6px;
+    padding: 13px;
+    box-shadow: 0 3px 14px rgba(92,61,46,0.10), inset 0 0 0 1px rgba(255,255,255,0.6);
+    overflow: hidden;
+    transition: box-shadow 0.22s ease;
+  }
+  .entry:hover .frame { box-shadow: 0 12px 30px rgba(92,61,46,0.20), inset 0 0 0 1px rgba(255,255,255,0.6); }
+  .frame img {
+    width: 100%; height: 100%; object-fit: contain;
+    display: block; border-radius: 2px;
+    filter: drop-shadow(0 2px 6px rgba(92,61,46,0.22));
+  }
+  .frame::after {
+    content: 'View larger';
+    position: absolute; left: 50%; bottom: 13px; transform: translate(-50%, 10px);
+    background: rgba(58,42,30,0.86); color: #fff;
+    font-size: 0.7rem; font-weight: 800; letter-spacing: 0.09em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 999px;
+    opacity: 0; transition: opacity 0.2s, transform 0.2s; pointer-events: none;
+  }
+  .entry:hover .frame::after, .entry:focus-visible .frame::after { opacity: 1; transform: translate(-50%, 0); }
 
-    .cat-card {
-      background: var(--warm);
-      border-radius: 20px;
-      padding: 32px 28px;
-      border: 2px solid transparent;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-    }
-    .cat-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--amber), var(--teal-lt));
-    }
-    .cat-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--amber);
-      box-shadow: 0 16px 40px rgba(232,133,74,0.15);
-    }
-    .cat-emoji {
-      font-size: 2.6rem;
-      margin-bottom: 14px;
-      display: block;
-    }
-    .cat-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--brown);
-      margin-bottom: 8px;
-    }
-    .cat-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.55;
-      margin-bottom: 18px;
-    }
-    .prize-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--amber);
-      color: #fff;
-      font-size: 0.78rem;
-      font-weight: 800;
-      padding: 5px 14px;
-      border-radius: 999px;
-      letter-spacing: 0.04em;
-    }
+  .placard { display: flex; align-items: baseline; gap: 10px; padding: 14px 2px 0; }
+  .code {
+    flex-shrink: 0;
+    font-size: 0.72rem; font-weight: 800; letter-spacing: 0.09em;
+    color: #fff; background: var(--amber);
+    padding: 4px 9px; border-radius: 5px;
+  }
+  .entry-name {
+    font-family: 'Playfair Display', serif; font-weight: 700;
+    font-size: 1.05rem; line-height: 1.3; color: var(--brown);
+  }
+  .entry-bio { font-size: 0.86rem; line-height: 1.55; color: var(--muted); font-style: italic; padding: 6px 2px 0; }
 
-    /* ── PHASES SECTION ── */
-    .phases-section {
-      padding: 80px 24px;
-      background: var(--warm);
-    }
+  /* ── VOTE BAND ──────────────────────────────────── */
+  .voteband { position: relative; z-index: 1; margin: clamp(60px, 9vw, 96px) 0 0; background: linear-gradient(135deg, var(--teal-dk), var(--teal) 60%, var(--teal-lt)); padding: clamp(52px, 8vw, 76px) 24px; text-align: center; }
+  .voteband h2 { font-family: 'Playfair Display', serif; font-weight: 900; font-size: clamp(1.8rem, 4.4vw, 2.8rem); color: #fff; letter-spacing: -0.015em; }
+  .voteband p { color: rgba(255,255,255,0.85); font-weight: 600; max-width: 520px; margin: 16px auto 30px; line-height: 1.6; }
 
-    .phases-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
-      margin-top: 48px;
-    }
+  /* ── ABOUT ──────────────────────────────────────── */
+  .about { position: relative; z-index: 1; background: var(--brown); padding: clamp(56px, 8vw, 84px) 0; }
+  .about .section-eyebrow { color: #ffb787; }
+  .about .section-title { color: #fff; }
+  .about-body { font-size: 0.98rem; line-height: 1.75; color: rgba(255,255,255,0.82); margin: 18px 0 28px; max-width: 620px; }
 
-    .phase-card {
-      border-radius: 24px;
-      padding: 40px 32px;
-      position: relative;
-      overflow: hidden;
-    }
-    .phase-card.donate {
-      background: linear-gradient(135deg, var(--teal-dk) 0%, var(--teal) 100%);
-      color: #fff;
-    }
-    .phase-card.vote {
-      background: linear-gradient(135deg, #8b4513 0%, var(--amber) 100%);
-      color: #fff;
-    }
-    .phase-card.announce {
-      background: linear-gradient(135deg, #3a2a1e 0%, var(--brown) 100%);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-    }
+  /* ── FOOTER ─────────────────────────────────────── */
+  .footer { position: relative; z-index: 1; background: #4a3125; color: rgba(255,255,255,0.55); text-align: center; padding: 26px 24px; font-size: 0.84rem; line-height: 1.7; }
+  .footer a { color: rgba(255,255,255,0.8); }
 
-    .phase-card::after {
-      content: attr(data-num);
-      position: absolute;
-      right: -10px; top: -20px;
-      font-family: 'Playfair Display', serif;
-      font-size: 9rem;
-      font-weight: 900;
-      opacity: 0.07;
-      color: #fff;
-      line-height: 1;
-      pointer-events: none;
-    }
+  /* ── FLOATING VOTE PILL ─────────────────────────── */
+  .float-vote {
+    position: fixed; right: 20px; bottom: 20px; z-index: 45;
+    display: inline-flex; align-items: center; gap: 9px;
+    background: var(--amber); color: #fff; text-decoration: none;
+    font-weight: 800; font-size: 0.95rem;
+    padding: 14px 26px; border-radius: 999px;
+    box-shadow: 0 8px 26px rgba(92,61,46,0.35);
+    opacity: 0; transform: translateY(80px); pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s, background 0.2s;
+  }
+  .float-vote.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+  .float-vote:hover { background: var(--amber-dk); }
 
-    .phase-label {
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      opacity: 0.7;
-      margin-bottom: 10px;
-    }
-    .phase-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-    .phase-dates {
-      font-size: 0.92rem;
-      opacity: 0.9;
-      font-weight: 600;
-      line-height: 1.5;
-      margin-bottom: 16px;
-    }
-    .phase-desc {
-      font-size: 0.88rem;
-      opacity: 0.8;
-      line-height: 1.6;
-    }
+  /* ── LIGHTBOX ───────────────────────────────────── */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 60;
+    background: rgba(32,22,16,0.94);
+    -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+    display: none; align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .lightbox.is-open { display: flex; }
+  .lb-figure { max-width: min(1000px, 100%); max-height: 100%; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+  .lb-figure img {
+    max-width: 100%; max-height: min(72vh, 760px);
+    object-fit: contain; border-radius: 5px;
+    background: var(--mat); padding: 10px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .lb-caption { text-align: center; color: #fff; max-width: 620px; }
+  .lb-caption .code { display: inline-block; margin-bottom: 9px; }
+  .lb-name { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.4rem; }
+  .lb-cat  { font-size: 0.74rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-top: 8px; }
+  .lb-bio  { font-size: 0.94rem; font-style: italic; color: rgba(255,255,255,0.78); margin-top: 10px; line-height: 1.6; }
 
-    /* ── HOW TO ENTER ── */
-    .how-section {
-      padding: 90px 24px 80px;
-      background: var(--cream);
-    }
+  .lb-btn {
+    position: absolute; background: rgba(255,255,255,0.13); border: 1px solid rgba(255,255,255,0.25);
+    color: #fff; cursor: pointer; border-radius: 50%;
+    width: 48px; height: 48px; font-size: 1.4rem; line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.18s;
+  }
+  .lb-btn:hover { background: rgba(255,255,255,0.28); }
+  .lb-close { top: 18px; right: 18px; font-size: 1.6rem; }
+  .lb-prev  { left: 18px;  top: 50%; transform: translateY(-50%); }
+  .lb-next  { right: 18px; top: 50%; transform: translateY(-50%); }
 
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin: 48px 0;
-    }
+  @media (max-width: 620px) {
+    .frames { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 22px 16px; }
+    .lb-prev { left: 10px; } .lb-next { right: 10px; }
+    .lb-btn { width: 42px; height: 42px; }
+    .float-vote { right: 14px; bottom: 14px; padding: 13px 22px; font-size: 0.9rem; }
+    .status-inner { gap: 12px 24px; }
+    .entry-bio { display: none; }
+    .cat-block { scroll-margin-top: 112px; }
+    .catnav a { font-size: 0.8rem; padding: 7px 13px; }
+  }
 
-    .step {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      padding: 24px;
-      background: var(--warm);
-      border-radius: 16px;
-      border: 1px solid rgba(92,61,46,0.08);
-    }
-    .step-num {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--teal);
-      color: #fff;
-      font-weight: 800;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .step-text strong {
-      display: block;
-      font-size: 0.92rem;
-      font-weight: 800;
-      color: var(--brown);
-      margin-bottom: 4px;
-    }
-    .step-text p {
-      font-size: 0.84rem;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .enter-cta-wrap {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      background: var(--amber);
-      color: #fff;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      letter-spacing: 0.04em;
-      padding: 16px 48px;
-      border-radius: 999px;
-      text-decoration: none;
-      box-shadow: 0 6px 24px rgba(232,133,74,0.4);
-      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-    }
-    .btn-primary:hover {
-      background: var(--amber-dk);
-      transform: translateY(-2px);
-      box-shadow: 0 10px 32px rgba(232,133,74,0.5);
-    }
-
-    /* ── ABOUT ── */
-    .about-section {
-      padding: 80px 24px 90px;
-      background: var(--teal-dk);
-      color: #fff;
-    }
-    .about-inner {
-      max-width: 800px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-    @media (max-width: 640px) {
-      .about-inner { grid-template-columns: 1fr; gap: 32px; }
-    }
-    .about-section .section-eyebrow { color: #ffd4a8; }
-    .about-section .section-title   { color: #fff; margin-bottom: 16px; }
-    .about-body {
-      font-size: 0.98rem;
-      line-height: 1.75;
-      color: rgba(255,255,255,0.82);
-      margin-bottom: 28px;
-    }
-    .btn-outline {
-      display: inline-block;
-      border: 2px solid rgba(255,255,255,0.5);
-      color: #fff;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: 0.88rem;
-      letter-spacing: 0.05em;
-      padding: 12px 30px;
-      border-radius: 999px;
-      text-decoration: none;
-      transition: background 0.2s, border-color 0.2s;
-      margin-right: 12px;
-      margin-bottom: 10px;
-      display: inline-block;
-    }
-    .btn-outline:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: #fff;
-    }
-    .about-visual {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-    .about-stat {
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 16px;
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .about-stat-icon { font-size: 2rem; }
-    .about-stat-num {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #ffd4a8;
-      line-height: 1;
-    }
-    .about-stat-label {
-      font-size: 0.82rem;
-      color: rgba(255,255,255,0.65);
-      font-weight: 600;
-      margin-top: 2px;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #1e1410;
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-      padding: 32px 24px;
-      font-size: 0.82rem;
-      line-height: 1.8;
-    }
-    footer a {
-      color: var(--amber);
-      text-decoration: none;
-    }
-    footer a:hover { text-decoration: underline; }
-    .footer-paws {
-      font-size: 1.4rem;
-      margin-bottom: 12px;
-      opacity: 0.4;
-      letter-spacing: 0.1em;
-    }
-
-    /* ── SCROLL REVEAL ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .reveal-d1 { transition-delay: 0.1s; }
-    .reveal-d2 { transition-delay: 0.2s; }
-    .reveal-d3 { transition-delay: 0.3s; }
-  </style>
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- ── HERO ── -->
-  <section class="hero">
-    <div class="paw-bg">
-      <span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span>
-      <span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span>
-    </div>
-    <h1>Best <em>Photo</em><br>Contest</h1>
-    <p class="hero-sub">
-      Show off your furry best friend and help to save lives. All proceeds go towards supporting Healing Hands for Helping Paws.
-    </p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdzWui1RcsuuvtPiD0V1Z3_6iyzL7mORFGecFwvOt5axuiqzw/viewform" target="_blank" class="hero-cta">
-      🐶 Enter &amp; Donate Now
-    </a>
-    <div class="hero-scroll">Scroll</div>
-  </section>
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="paw-bg"><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span><span>🐾</span></div>
+  <span class="hero-badge"><span class="live-dot"></span>Voting is open</span>
+  <h1>Meet the <em>Nominees</em></h1>
+  <p class="hero-sub">
+    Eleven entries, three categories, one very hard decision. Browse them all below,
+    then pick your favourite in each category.
+  </p>
+  <div class="hero-actions">
+    <a class="btn-vote" data-vote href="#">🗳️ Vote now</a>
+    <a class="btn-ghost" href="#gallery">See the entries</a>
+  </div>
+</section>
 
-  <!-- ── TIMELINE STRIP ── -->
-  <div class="timeline-strip">
-    <div class="timeline-inner">
-      <div class="tl-item">
-        <span class="tl-icon">💝</span>
-        <div>
-          <div class="tl-label">Phase 1 — Donation</div>
-          <div class="tl-date">July 15-August 12</div>
-        </div>
+<!-- ══ STATUS STRIP ══ -->
+<div class="status-strip">
+  <div class="status-inner">
+    <div class="st-item is-done">
+      <span class="st-icon">💝</span>
+      <div><div class="st-label">Entries closed</div><div class="st-date">July 15 – August 12</div></div>
+    </div>
+    <div class="st-item is-now">
+      <span class="st-icon">🗳️</span>
+      <div><div class="st-label">Voting open now</div><div class="st-date">August 13 – August 16</div></div>
+    </div>
+    <div class="st-item">
+      <span class="st-icon">🏆</span>
+      <div><div class="st-label">Winners announced</div><div class="st-date">August 17</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ HOW TO VOTE ══ -->
+<section class="howto">
+  <div class="container">
+    <p class="section-eyebrow">Voting</p>
+    <h2 class="section-title">How to cast your vote</h2>
+    <p class="section-intro">
+      Voting closes August 16 at 11:59 pm EST. The photo with the most votes in each category
+      wins a $10 PetSmart gift card, and every dollar raised goes to Healing Hands for Helping Paws.
+    </p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Browse the entries</h3>
+        <p>Every photo submitted is below, grouped by category. Tap any photo to see it full size.</p>
       </div>
-      <div class="tl-item">
-        <span class="tl-icon">🗳️</span>
-        <div>
-          <div class="tl-label">Phase 2 — Voting</div>
-          <div class="tl-date">August 13-August 16</div>
-        </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Note the entry codes</h3>
+        <p>Each photo has a code on its label — like D1 or F3. You'll use these codes on the ballot.</p>
       </div>
-      <div class="tl-item">
-        <span class="tl-icon">🏆</span>
-        <div>
-          <div class="tl-label">Winners Announced</div>
-          <div class="tl-date">August 17</div>
-        </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Fill in the ballot</h3>
+        <p>Open the voting form and choose one favourite per category. It takes about a minute.</p>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ── CONTEST SECTION ── -->
-  <section class="contest-section">
-    <div class="container">
-      <p class="section-eyebrow reveal visible">The Contest</p>
-      <h2 class="section-title reveal reveal-d1 visible">Three Categories:</h2>
-      <p class="section-intro reveal reveal-d2 visible">
-        Upload your best pet photo(s) in one (or more) of the three categories below. The photo with the most votes in each category wins a <strong>$10 PetSmart gift card</strong>. Every donation goes directly towards supporting stray and feral animals in Southern Ontario.
-      </p>
+<!-- ══ CATEGORY NAV ══ -->
+<nav class="catnav" aria-label="Jump to category">
+  <div class="catnav-inner">
+    <a href="#best-duo">🐶🐱 Best Duo</a>
+    <a href="#funniest-pet">😂 Funniest Pet</a>
+    <a href="#most-photogenic">📸 Most Photogenic</a>
+  </div>
+</nav>
 
-      <div class="categories">
-        <div class="cat-card reveal visible">
-          <span class="cat-emoji">🐶🐱</span>
-          <div class="cat-name">Best Duo</div>
-        </div>
-        <div class="cat-card reveal reveal-d1 visible">
-          <span class="cat-emoji">😂</span>
-          <div class="cat-name">Funniest Pet</div>
-        </div>
-        <div class="cat-card reveal reveal-d2 visible">
-          <span class="cat-emoji">📸</span>
-          <div class="cat-name">Best Photogenic</div>
-        </div>
+<!-- ══ GALLERY ══ -->
+<main class="gallery" id="gallery">
+  <div class="container">
+
+    <!-- Best Duo -->
+    <section class="cat-block" id="best-duo">
+      <div class="cat-head">
+        <span class="cat-emoji">🐶🐱</span>
+        <h2 class="cat-name">Best Duo</h2>
+        <span class="cat-count">2 entries</span>
       </div>
-    </div>
-  </section>
-
-  <!-- ── PHASES ── -->
-  <section class="phases-section">
-    <div class="container">
-      <p class="section-eyebrow reveal visible">How It Works</p>
-      <h2 class="section-title reveal reveal-d1 visible">Contest Timeline</h2>
-
-      <div class="phases-grid">
-        <div class="phase-card donate reveal visible" data-num="1">
-          <div class="phase-title">Donation Phase</div>
-          <div class="phase-dates">
-            Est. July 15th 2026 at 12:01 am EST<br>through August 12th 2026 at 11:59 pm EST
-          </div>
-          <p class="phase-desc">Submit your pet's photo and make your donation to enter the contest. Details on how to make a donation are on the form.</p>
-        </div>
-
-        <div class="phase-card vote reveal reveal-d1 visible" data-num="2">
-          <div class="phase-title">Voting Phase</div>
-          <div class="phase-dates">
-            Est. August 13th 2026 at 12:01 am EST<br>through August 16th 2026 at 11:59 pm EST
-          </div>
-          <p class="phase-desc">Public votes are collected and will be displayed on this website.</p>
-        </div>
-
-        <div class="phase-card announce reveal reveal-d2 visible" data-num="🏆">
-          <div class="phase-title">Winners Announced</div>
-          <div class="phase-dates">Est. August 17th 2026</div>
-          <p class="phase-desc">Only one winner per category will be announced. Each winner will receive a $10 PetSmart gift card.</p>
-        </div>
+      <div class="frames">
+        <button class="entry" data-code="D1" data-name="Encanto &amp; Kingston" data-cat="Best Duo" data-full="photos/duo-1.jpg">
+          <div class="frame"><img src="photos/duo-1-t.jpg" width="506" height="900" loading="lazy" decoding="async" alt="Entry D1, Best Duo: Encanto and Kingston — a white dog and a black cat side by side on a blanket."></div>
+          <div class="placard"><span class="code">D1</span><span class="entry-name">Encanto &amp; Kingston</span></div>
+        </button>
+        <button class="entry" data-code="D2" data-name="Mufasa &amp; Django" data-cat="Best Duo" data-full="photos/duo-2.jpg">
+          <div class="frame"><img src="photos/duo-2-t.jpg" width="900" height="652" loading="lazy" decoding="async" alt="Entry D2, Best Duo: Mufasa and Django — a husky and a black lab lying together on a deck."></div>
+          <div class="placard"><span class="code">D2</span><span class="entry-name">Mufasa &amp; Django</span></div>
+        </button>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── ABOUT ── -->
-  <section class="about-section">
-    <div class="container">
-      <div class="about-inner">
-        <div>
-          <p class="section-eyebrow reveal visible">About the Charity</p>
-          <h2 class="section-title reveal reveal-d1 visible">Healing Hands for Helping Paws</h2>
-          <p class="about-body reveal reveal-d2 visible">
-            Based in Southern Ontario, Healing Hands for Helping Paws is a dedicated dog rescue organization on a mission to find forever homes for amazing dogs in need. For more information, go to their website linked below.
-          </p>
-          <div class="reveal reveal-d2 visible">
-            <a href="https://www.healinghandsforhelpingpaws.com/" target="_blank" class="btn-outline">Visit Website</a>
-          </div>
-        </div>
+    <!-- Funniest Pet -->
+    <section class="cat-block" id="funniest-pet">
+      <div class="cat-head">
+        <span class="cat-emoji">😂</span>
+        <h2 class="cat-name">Funniest Pet</h2>
+        <span class="cat-count">4 entries</span>
       </div>
-    </div>
-  </section>
+      <div class="frames">
+        <button class="entry" data-code="F1" data-name="Lily" data-bio="Let's go girls" data-cat="Funniest Pet" data-full="photos/fun-1.jpg">
+          <div class="frame"><img src="photos/fun-1-t.jpg" width="675" height="900" loading="lazy" decoding="async" alt="Entry F1, Funniest Pet: Lily, a small dog in a pink cowboy hat with her mouth wide open."></div>
+          <div class="placard"><span class="code">F1</span><span class="entry-name">Lily</span></div>
+          <p class="entry-bio">“Let's go girls”</p>
+        </button>
+        <button class="entry" data-code="F2" data-name="Encanto at the beach" data-cat="Funniest Pet" data-full="photos/fun-2.jpg">
+          <div class="frame"><img src="photos/fun-2-t.jpg" width="900" height="506" loading="lazy" decoding="async" alt="Entry F2, Funniest Pet: Encanto at the beach, a white dog wearing sunglasses and a rainbow towel."></div>
+          <div class="placard"><span class="code">F2</span><span class="entry-name">Encanto at the beach</span></div>
+        </button>
+        <button class="entry" data-code="F3" data-name="Cuddles" data-cat="Funniest Pet" data-full="photos/fun-3.jpg">
+          <div class="frame"><img src="photos/fun-3-t.jpg" width="506" height="900" loading="lazy" decoding="async" alt="Entry F3, Funniest Pet: Cuddles, an orange cat with his head buried in a cup on the kitchen counter."></div>
+          <div class="placard"><span class="code">F3</span><span class="entry-name">Cuddles</span></div>
+        </button>
+        <button class="entry" data-code="F4" data-name="Pearl &amp; Mufasa" data-cat="Funniest Pet" data-full="photos/fun-4.jpg">
+          <div class="frame"><img src="photos/fun-4-t.jpg" width="590" height="442" loading="lazy" decoding="async" alt="Entry F4, Funniest Pet: Pearl and Mufasa, a husky leaning in nose-to-nose with a tuxedo cat on a bed."></div>
+          <div class="placard"><span class="code">F4</span><span class="entry-name">Pearl &amp; Mufasa</span></div>
+        </button>
+      </div>
+    </section>
 
-  <script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    reveals.forEach(el => observer.observe(el));
-  </script>
+    <!-- Most Photogenic -->
+    <section class="cat-block" id="most-photogenic">
+      <div class="cat-head">
+        <span class="cat-emoji">📸</span>
+        <h2 class="cat-name">Most Photogenic</h2>
+        <span class="cat-count">5 entries</span>
+      </div>
+      <div class="frames">
+        <button class="entry" data-code="P1" data-name="Lily" data-bio="She's adorable, but don't feed her after midnight…" data-cat="Most Photogenic" data-full="photos/pho-1.jpg">
+          <div class="frame"><img src="photos/pho-1-t.jpg" width="900" height="675" loading="lazy" decoding="async" alt="Entry P1, Most Photogenic: Lily, a small tan and white dog looking up at the camera in a sunbeam."></div>
+          <div class="placard"><span class="code">P1</span><span class="entry-name">Lily</span></div>
+          <p class="entry-bio">“She's adorable, but don't feed her after midnight…”</p>
+        </button>
+        <button class="entry" data-code="P2" data-name="Encanto" data-cat="Most Photogenic" data-full="photos/pho-2.jpg">
+          <div class="frame"><img src="photos/pho-2-t.jpg" width="506" height="900" loading="lazy" decoding="async" alt="Entry P2, Most Photogenic: Encanto, a white dog sitting in the grass with his tongue out."></div>
+          <div class="placard"><span class="code">P2</span><span class="entry-name">Encanto</span></div>
+        </button>
+        <button class="entry" data-code="P3" data-name="Cuddles" data-cat="Most Photogenic" data-full="photos/pho-3.jpg">
+          <div class="frame"><img src="photos/pho-3-t.jpg" width="674" height="900" loading="lazy" decoding="async" alt="Entry P3, Most Photogenic: Cuddles, an orange cat stretched out asleep on a patio chair."></div>
+          <div class="placard"><span class="code">P3</span><span class="entry-name">Cuddles</span></div>
+        </button>
+        <button class="entry" data-code="P4" data-name="Pearl" data-cat="Most Photogenic" data-full="photos/pho-4.jpg">
+          <div class="frame"><img src="photos/pho-4-t.jpg" width="844" height="900" loading="lazy" decoding="async" alt="Entry P4, Most Photogenic: Pearl, a black and white tuxedo cat curled up on a patterned rug."></div>
+          <div class="placard"><span class="code">P4</span><span class="entry-name">Pearl</span></div>
+        </button>
+        <button class="entry" data-code="P5" data-name="Midna" data-cat="Most Photogenic" data-full="photos/pho-5.jpg">
+          <div class="frame"><img src="photos/pho-5-t.jpg" width="675" height="900" loading="lazy" decoding="async" alt="Entry P5, Most Photogenic: Midna, a long-haired tabby cat perched on a window cat bed."></div>
+          <div class="placard"><span class="code">P5</span><span class="entry-name">Midna</span></div>
+        </button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ══ VOTE BAND ══ -->
+<section class="voteband">
+  <h2>Picked your favourites?</h2>
+  <p>One vote per category. Voting closes August 16 at 11:59 pm EST, and winners are announced the next day.</p>
+  <a class="btn-vote" data-vote href="#">🗳️ Vote now</a>
+</section>
+
+<!-- ══ ABOUT ══ -->
+<section class="about">
+  <div class="container">
+    <p class="section-eyebrow">About the Charity</p>
+    <h2 class="section-title">Healing Hands for Helping Paws</h2>
+    <p class="about-body">
+      Based in Southern Ontario, Healing Hands for Helping Paws is a dedicated dog rescue organization
+      on a mission to find forever homes for amazing dogs in need. For more information, go to their
+      website linked below.
+    </p>
+    <a class="btn-ghost" href="https://www.healinghandsforhelpingpaws.com/" target="_blank" rel="noopener">Visit Website</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Best Photo Contest · Supporting <a href="https://www.healinghandsforhelpingpaws.com/" target="_blank" rel="noopener">Healing Hands for Helping Paws</a></p>
+  <p>Photos shared with permission of their owners.</p>
+</footer>
+
+<a class="float-vote" data-vote href="#">🗳️ Vote</a>
+
+<!-- ══ LIGHTBOX ══ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-btn lb-prev"  id="lbPrev"  aria-label="Previous photo">‹</button>
+  <button class="lb-btn lb-next"  id="lbNext"  aria-label="Next photo">›</button>
+  <figure class="lb-figure">
+    <img id="lbImg" src="" alt="">
+    <figcaption class="lb-caption">
+      <span class="code" id="lbCode"></span>
+      <div class="lb-name" id="lbName"></div>
+      <div class="lb-bio"  id="lbBio"></div>
+      <div class="lb-cat"  id="lbCat"></div>
+    </figcaption>
+  </figure>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   THE VOTING FORM LINK. To change it later, edit only the
+   text between the quotes below — every "Vote" button on the
+   page updates automatically.
+   ═══════════════════════════════════════════════════════════ */
+const VOTE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSegqHWj5DyUQhR_Bh52xWQiI1Pfb3GlhvSy1foQHKBS6YteEQ/viewform";
 
 
-</body></html>
+/* ── Wire up the vote buttons ───────────────────────────── */
+(function () {
+  document.querySelectorAll("[data-vote]").forEach(function (el) {
+    el.href = VOTE_FORM_URL;
+    el.target = "_blank";
+    el.rel = "noopener";
+  });
+})();
+
+/* ── Lightbox ───────────────────────────────────────────── */
+(function () {
+  const entries = Array.from(document.querySelectorAll(".entry"));
+  const box   = document.getElementById("lightbox");
+  const img   = document.getElementById("lbImg");
+  const code  = document.getElementById("lbCode");
+  const name  = document.getElementById("lbName");
+  const bio   = document.getElementById("lbBio");
+  const cat   = document.getElementById("lbCat");
+  let index = 0, lastFocus = null;
+
+  function show(i) {
+    index = (i + entries.length) % entries.length;
+    const el = entries[index];
+    const inner = el.querySelector("img");
+    img.src = el.dataset.full;
+    img.alt = inner ? inner.alt : "";
+    code.textContent = el.dataset.code;
+    name.innerHTML = el.dataset.name;
+    cat.textContent = el.dataset.cat;
+    bio.textContent = el.dataset.bio ? "\u201C" + el.dataset.bio + "\u201D" : "";
+    bio.style.display = el.dataset.bio ? "" : "none";
+  }
+
+  function open(i) {
+    lastFocus = document.activeElement;
+    show(i);
+    box.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    document.getElementById("lbClose").focus();
+  }
+
+  function close() {
+    box.classList.remove("is-open");
+    document.body.style.overflow = "";
+    if (lastFocus) lastFocus.focus();
+  }
+
+  entries.forEach(function (el, i) {
+    el.addEventListener("click", function () { open(i); });
+  });
+
+  document.getElementById("lbClose").addEventListener("click", close);
+  document.getElementById("lbPrev").addEventListener("click", function () { show(index - 1); });
+  document.getElementById("lbNext").addEventListener("click", function () { show(index + 1); });
+  box.addEventListener("click", function (e) { if (e.target === box) close(); });
+
+  document.addEventListener("keydown", function (e) {
+    if (!box.classList.contains("is-open")) return;
+    if (e.key === "Escape")     close();
+    if (e.key === "ArrowLeft")  show(index - 1);
+    if (e.key === "ArrowRight") show(index + 1);
+  });
+})();
+
+/* ── Floating vote pill + active category link ──────────── */
+(function () {
+  const pill = document.querySelector(".float-vote");
+  const hero = document.querySelector(".hero");
+  const links = Array.from(document.querySelectorAll(".catnav a"));
+  const blocks = links.map(function (a) { return document.querySelector(a.getAttribute("href")); });
+
+  function onScroll() {
+    pill.classList.toggle("is-visible", window.scrollY > hero.offsetHeight - 80);
+    let active = -1;
+    blocks.forEach(function (b, i) {
+      if (b && b.getBoundingClientRect().top <= 140) active = i;
+    });
+    links.forEach(function (a, i) { a.classList.toggle("is-active", i === active); });
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+</body>
+</html>
